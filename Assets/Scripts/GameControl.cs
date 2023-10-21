@@ -9,15 +9,25 @@ public class GameControl : MonoBehaviour
 {
    
     public bool gameOver = false;
+    public float timer;
+    public GameObject lose;
+    public TextMeshProUGUI timer_text;
   
     // Update is called once per frame
     void Update()
     {
-        
+        if (!gameOver)
+        {
+            timer = timer + Time.deltaTime;
+            timer_text.text = timer.ToString("#.00");
+
+        }
     }
 
-    public void endGame(){
+    public void endGame()
+    {
         gameOver = true;
+        lose.SetActive(true);
         StartCoroutine(restart());
     }
 
